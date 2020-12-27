@@ -1,42 +1,24 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
 require('./config/config');
 
-app.use(bodyParser.urlencoded({ extended: false }))
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(require('./routes/usuario.js'));
 
-app.get('/usuarios', function(req, res) {
-    res.json('get usuarios');
-});
-
-app.post('/usuarios', function(req, res) {
-    let body = req.body;
-    if (body.nombre === undefined) {
-        res.status(400).json({
-            ok: false,
-            mensaje: 'Campos vacios'
-        });
-    } else {
-        res.json({
-            body
-        });
-    }
-});
-
-app.put('/usuarios/:id', function(req, res) {
-    let id = req.params.id;
-    console.log(id);
-    res.json({
-        id
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
+    (err, res) => {
+        if (err) throw err;
+        console.log('Base de datos conectada');
+    }, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+        useCreateIndex: true
     });
-});
-
-app.delete('/usuarios', function(req, res) {
-    res.json('delete usuarios');
-});
 
 app.listen(process.env.PORT, () => {
     console.log('Escuchando el puerto');
