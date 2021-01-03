@@ -17,3 +17,13 @@ if (process.env.NODE_ENV === 'dev') {
     urlBD = 'mongodb+srv://abrahamS:oqNwKdv3Ju6aDBSM@cluster0.esqnp.mongodb.net/cafe';
 }
 process.env.URLDB = urlBD;
+
+//===========================
+//    Vencimiento token
+//===========================
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+//===========================
+//          SEED auth
+//===========================
+process.env.SEED = 'este-es-el-seed-desarrollo';
