@@ -48,3 +48,10 @@ usuarioSchema.methods.toJSON = function() {
 usuarioSchema.plugin(uniqueValidator, { message: '{PATH} debe ser unico' });
 
 module.exports = mongoose.model('Usuario', usuarioSchema);
+
+
+/*
+ID: 673365170010-ge5u3v34fre99a796b47l2a0p8tbubk7.apps.googleusercontent.com
+secreto cliente:    aUCwPX1jDyVUzzHn6G_380i1
+
+*/
